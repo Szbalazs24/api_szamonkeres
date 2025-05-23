@@ -24,18 +24,41 @@
             <div class="kep5 col-md-2 col-lg-2 card"></div>
         </div>
     </div>
-    
+
     <script>
 
-
+        var leirasok = []
         async function get() {
-            const res = await fetch("https://dragonball-api.com/api/characters?limit=6")
+            var lista = []
+            leirasok = []
+            const res = await fetch("https://dragonball-api.com/api/characters?limit=50")
             const data = await res.json()
             for (var i = 0; i < 6; i++) {
-                var imgurl = data.items[i].image
-                document.querySelector(`.kep${i}`).innerHTML = `<img class="card-img" src="${imgurl}"  alt=""> <ul><li>Id: ${data.items[i].id}</li> <li>Name: ${data.items[i].name}</li><li>Ki: ${data.items[i].ki}</li><li>MaxKi: ${data.items[i].maxKi}</li><li>Race: ${data.items[i].race}</li><li>Gender: ${data.items[i].gender}</li><li>Affiliation: ${data.items[i].affiliation}</li></ul>`
+                var a = Math.floor(Math.random() * (50 - 1 + 1)) + 1
+                if (lista.includes(a)) {
+                    a = Math.floor(Math.random() * (50 - 1 + 1)) + 1
+                }
+                else {
+                    var description = []
+                    description = data.items[a].description.split('.')
+                    leirasok.push(description)
+                    lista.push(a)
+                    var imgurl = data.items[a].image
+                    document.querySelector(`.kep${i}`).innerHTML = `<img class="card-img" src="${imgurl}"  alt=""> <ul><li>Id: ${data.items[a].id}</li> <li>Name: ${data.items[a].name}</li><li>Ki: ${data.items[a].ki}</li><li>MaxKi: ${data.items[a].maxKi}</li><li>Race: ${data.items[a].race}</li><li>Gender: ${data.items[a].gender}</li><li>Affiliation: ${data.items[a].affiliation}</li><li>Description: <section class="leir${i}">${leirasok[i][0]}<button onclick="tovabb(${i})">Tovább..</button></section> </li></ul>`
+                }
+
             }
 
+        }
+        function tovabb(x) {
+            var teljes = ""
+            for(var i =0; i<leirasok[x].length; i++){
+                teljes += leirasok[x][i]
+            }
+            document.querySelector(`.leir${x}`).innerHTML=`${teljes} <button onclick="vissza(${x})">Vissza</button>`
+        }
+        function vissza(x){
+            document.querySelector(`.leir${x}`).innerHTML=`${leirasok[x][0]}<button onclick="tovabb(${x})">Tovább..</button>`
         }
 
     </script>
