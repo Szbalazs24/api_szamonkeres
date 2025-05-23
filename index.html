@@ -12,18 +12,19 @@
 </head>
 
 <body>
-
+    <h1>Dragonball</h1>
     <button onclick="get()">Generálás</button>
     <div class="container-fluid">
         <div class="row">
-            <div class="kep0 col-md-2 col-lg-2"></div>
-            <div class="kep1 col-md-2 col-lg-2"></div>
-            <div class="kep2 col-md-2 col-lg-2"></div>
-            <div class="kep3 col-md-2 col-lg-2"></div>
-            <div class="kep4 col-md-2 col-lg-2"></div>
-            <div class="kep5 col-md-2 col-lg-2"></div>
+            <div class="kep0 col-md-2 col-lg-2 card"></div>
+            <div class="kep1 col-md-2 col-lg-2 card"></div>
+            <div class="kep2 col-md-2 col-lg-2 card"></div>
+            <div class="kep3 col-md-2 col-lg-2 card"></div>
+            <div class="kep4 col-md-2 col-lg-2 card"></div>
+            <div class="kep5 col-md-2 col-lg-2 card"></div>
         </div>
     </div>
+    
     <script>
 
 
@@ -32,7 +33,7 @@
             const data = await res.json()
             for (var i = 0; i < 6; i++) {
                 var imgurl = data.items[i].image
-                document.querySelector(`.kep${i}`).innerHTML = `<img class="img img-fluid" src="${imgurl}"  alt="">`
+                document.querySelector(`.kep${i}`).innerHTML = `<img class="card-img" src="${imgurl}"  alt=""> <ul><li>Id: ${data.items[i].id}</li> <li>Name: ${data.items[i].name}</li><li>Ki: ${data.items[i].ki}</li><li>MaxKi: ${data.items[i].maxKi}</li><li>Race: ${data.items[i].race}</li><li>Gender: ${data.items[i].gender}</li><li>Affiliation: ${data.items[i].affiliation}</li></ul>`
             }
 
         }

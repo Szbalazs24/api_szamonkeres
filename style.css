@@ -1,0 +1,18 @@
+img{
+    margin: auto;
+    width: 90px;
+    height: 290px;
+}
+h1{
+    text-align: center;
+}
+button{
+    display: block;
+    margin: 10px auto 10px auto;
+}
+ul{
+    
+    text-align: left;
+    margin-top: 10px;
+    list-style-type: none;
+}
