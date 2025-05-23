@@ -12,25 +12,33 @@
 </head>
 
 <body>
- 
-    <button onclick="getcat()">Generálás</button>
-    <div><img src="" id="kep" alt=""></div>
+
+    <button onclick="get()">Generálás</button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="kep0 col-md-2 col-lg-2"></div>
+            <div class="kep1 col-md-2 col-lg-2"></div>
+            <div class="kep2 col-md-2 col-lg-2"></div>
+            <div class="kep3 col-md-2 col-lg-2"></div>
+            <div class="kep4 col-md-2 col-lg-2"></div>
+            <div class="kep5 col-md-2 col-lg-2"></div>
+        </div>
+    </div>
     <script>
-       
-        
-        async function getcat() {
-            const res = await fetch("https://dragonball-api.com/api/characters?limit=1", {
-                headers: {
-                    "x-api-key": apikey
-                }
-            })
+
+
+        async function get() {
+            const res = await fetch("https://dragonball-api.com/api/characters?limit=6")
             const data = await res.json()
-            var imgurl = data[0].url   
-            document.querySelector("#kep").src = imgurl
+            for (var i = 0; i < 6; i++) {
+                var imgurl = data.items[i].image
+                document.querySelector(`.kep${i}`).innerHTML = `<img class="img img-fluid" src="${imgurl}"  alt="">`
+            }
+
         }
 
     </script>
-    
+
 </body>
 
 </html>
