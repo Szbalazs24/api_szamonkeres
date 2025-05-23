@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragonball</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+ 
+    <button onclick="getcat()">Generálás</button>
+    <div><img src="" id="kep" alt=""></div>
+    <script>
+       
+        
+        async function getcat() {
+            const res = await fetch("https://dragonball-api.com/api/characters?limit=1", {
+                headers: {
+                    "x-api-key": apikey
+                }
+            })
+            const data = await res.json()
+            var imgurl = data[0].url   
+            document.querySelector("#kep").src = imgurl
+        }
+
+    </script>
+    
+</body>
+
+</html>
